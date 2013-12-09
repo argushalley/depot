@@ -1,25 +1,36 @@
-<%= form_for(@line_item) do |f| %>
-  <% if @line_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@line_item.errors.count, "error") %> prohibited this line_item from being saved:</h2>
+<div class="depot_form">
+  <%= form_for(@line_item) do |f| %>
+    <% if @line_item.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-error">
+          <h2>The form contains <%= pluralize(@line_item.errors.count, "error") %></h2>
 
-      <ul>
-      <% @line_item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+          <% @line_item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="span6 offset3">
+        <fieldset class="text-center">
+          <legend>Enter User Details</legend>
+          <div class="field">
+            <%= f.label :product %><br>
+            <%= f.text_field :product %>
+          </div>
+          <div class="field">
+            <%= f.label :cart %><br>
+            <%= f.text_field :cart %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Create Line Item", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </fieldset>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :product %><br>
-    <%= f.text_field :product %>
   </div>
-  <div class="field">
-    <%= f.label :cart %><br>
-    <%= f.text_field :cart %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

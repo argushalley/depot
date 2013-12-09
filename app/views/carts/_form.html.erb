@@ -1,17 +1,25 @@
-<%= form_for(@cart) do |f| %>
-  <% if @cart.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+<div class="depot_form">
+  <%= form_for(@cart) do |f| %>
+    <% if @cart.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-error">
+          <h2>The form contains <%= pluralize(@cart.errors.count, "error") %></h2>
 
-      <ul>
-      <% @cart.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+          <% @cart.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="span6 offset3 text-center">
+        <div class="actions">
+          <%= f.submit "Create Cart", class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
